@@ -114,7 +114,7 @@ class CircularLinkedList{
        else if(ptr==head){
            if(head->next==NULL){
                head=NULL;
-               cout << "node deleted" <<end;
+               cout << "node deleted" <<endl;
            }else{
                Node *ptr1=head;
                while(ptr1->next!=head){
