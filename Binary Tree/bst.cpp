@@ -36,7 +36,7 @@ class TreeNode{
          }
      }
 
-    void insertNode(TreeNode *new_node){
+    void insertNode(TreeNode *new_node){ // insert a node
         if(root==NULL){
             root=new_node;
             cout << "value inserted as root node" << endl;
@@ -65,7 +65,7 @@ class TreeNode{
         }
     }
 
-    void printPreorder(TreeNode* r){
+    void printPreorder(TreeNode* r){ // ROOT LEFT RIGHT
         if(r==NULL){
             return;
         }
@@ -75,6 +75,50 @@ class TreeNode{
         printPreorder(r->left);
         // then recur on right subtree
         printPreorder(r->right);
+    }
+
+    void printInOrder(TreeNode *r){ //LEFT ROOT RIGHT
+        if(r==NULL){
+            return;
+        }
+        //recur to left
+        printInOrder(r->left);
+        //print value
+        cout << r->value <<" ";
+        // then recur to right
+        printInOrder(r->right);
+    }
+
+    void printPostOrder(TreeNode *r){ //LEFT RIGHT ROOT
+        if(r==NULL){
+            return;
+        }
+        //recur to left
+        printPostOrder(r->left);
+
+        // recur to right
+        printPostOrder(r->right);
+
+        //print value
+        cout << r->value << " ";
+    }
+
+    TreeNode *IterativeSearch(int v){ // checks if node is present
+        if(root==NULL){
+            return root;
+        }else{
+            TreeNode * temp = root;
+      while (temp != NULL) {
+        if (v == temp -> value) {
+          return temp;
+        } else if (v < temp -> value) {
+          temp = temp -> left;
+        } else {
+          temp = temp -> right;
+        }
+      }
+        return NULL;
+        }
     }
 
  };
@@ -110,6 +154,15 @@ int main(){
             
             case 2:
             // search node
+             
+            cout << "Enter VALUE of TREE NODE to SEARCH in BST: ";
+            cin >> val;
+            new_node=obj.IterativeSearch(val);
+            if(new_node!=NULL){
+                cout << " value exists " << endl;
+            }else{
+                cout << " value not found " <<endl;
+            }
             break;
 
             case 3:
@@ -120,6 +173,14 @@ int main(){
             // print node
             cout << "Preorder: ";
             obj.printPreorder(obj.root);
+            cout << endl;
+
+            cout << "InOrder: ";
+            obj.printInOrder(obj.root);
+            cout << endl;
+
+            cout << "PostOrder: ";
+            obj.printPostOrder(obj.root);
             cout << endl;
             break;
 
