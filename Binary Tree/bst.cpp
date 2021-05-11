@@ -24,6 +24,9 @@ class TreeNode{
 
      public:
      TreeNode *root;
+    BST(){
+        root=NULL;
+    }
 
      bool isEMpty(){ // check if tree is empty
          if(root==NULL){
@@ -46,14 +49,14 @@ class TreeNode{
                 }
                 else if((new_node->value<temp->value) && (temp->left==NULL)){
                     temp->left=new_node;
-                    cout << "value inserted" << endl;
+                    cout << "value inserted to the left" << endl;
                     break;
                 }else if(new_node->value<temp->value){
                     temp=temp->left;
                 }
                  else if((new_node->value>temp->value) && (temp->right==NULL)){
                     temp->right=new_node;
-                    cout << "value inserted" << endl;
+                    cout << "value inserted to the right" << endl;
                     break;
                 }else{
                     temp=temp->right;
@@ -62,6 +65,17 @@ class TreeNode{
         }
     }
 
+    void printPreorder(TreeNode* r){
+        if(r==NULL){
+            return;
+        }
+        // first print node
+        cout << r->value << " ";
+        // then recur on left subtree
+        printPreorder(r->left);
+        // then recur on right subtree
+        printPreorder(r->right);
+    }
 
  };
 
@@ -91,7 +105,7 @@ int main(){
             cin >> val;
             new_node -> value=val;
             obj.insertNode(new_node);
-            cout << endl;
+           
             break;
             
             case 2:
@@ -104,6 +118,9 @@ int main(){
 
             case 4:
             // print node
+            cout << "Preorder: ";
+            obj.printPreorder(obj.root);
+            cout << endl;
             break;
 
             case 5:
