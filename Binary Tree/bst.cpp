@@ -121,6 +121,23 @@ class TreeNode{
         }
     }
 
+    int height(TreeNode *r){
+        if(r==NULL){
+            return -1;
+        }else{
+           int leftHeight = height(r->left);
+           int rightHeight = height(r->right);
+           if (leftHeight>rightHeight){
+               return leftHeight+1;
+           }else{
+               return rightHeight+1;
+           }
+        }
+    }
+
+   
+
+
  };
 
 int main(){
@@ -132,7 +149,8 @@ int main(){
         cout << "2 search node " << endl;
         cout << "3 delete node " <<endl;
         cout << "4 print bst values " <<endl;
-        cout << "5 clear screen " << endl;
+        cout << "5 height of tree " <<endl;
+        cout << "6 clear screen " << endl;
         cout << "0 exit program " <<endl;
 
         cin >> option;
@@ -185,6 +203,11 @@ int main(){
             break;
 
             case 5:
+            int height =obj.height(obj.root);
+            cout << "the height is: " << height <<endl;
+            break;
+
+            case 6:
             system("cls");
             break;
 
